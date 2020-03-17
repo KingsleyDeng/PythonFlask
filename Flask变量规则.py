@@ -1,12 +1,24 @@
 # -- coding: UTF-8 --
+import os
+import sys
 
 from flask import Flask
 from flask import url_for
 from flask import redirect
 from flask import render_template
+from flask_sqlalchemy import SQLAlchemy
+
+WIN = sys.platform.startswith('win')
+if WIN:  # 如果是 Windows 系统，使用三个斜线
+    prefix = 'sqlite:///'
+else:  # 否则使用四个斜线
+    prefix = 'sqlite:////'
+
 
 app = Flask(__name__)
 
+db = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + os.path.join(app.root_path, 'data.db')
 name = 'Grey Li'
 movies = [
     {'title': 'My Neighbor Totoro', 'year': '1988'},
