@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>{{ name }}'s Watchlist</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
 </head>
 <body>
     <h2>{{ name }}'s Watchlist</h2>
@@ -13,6 +14,7 @@
         <li>{{ movie.title }} - {{ movie.year }}</li>  {# 等同于 movie['title'] #}
         {% endfor %}  {# 使用 endfor 标签结束 for 语句 #}
     </ul>
+    <img src="{{ url_for('static', filename='foo.jpg')}}"/>
     <footer>
         <small>&copy; 2018 <a href="http://helloflask.com/tutorial">HelloFlask</a></small>
     </footer>

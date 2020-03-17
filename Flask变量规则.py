@@ -24,9 +24,7 @@ movies = [
 
 @app.route("/")
 def index():
-    return render_template('index.html',name=name, movies=movies)
-
-
+    return render_template('index.html', name=name, movies=movies)
 
 
 if __name__ == "__main__":
