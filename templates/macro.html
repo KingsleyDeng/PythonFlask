@@ -2,9 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Macro 宏的使用 </title>
 </head>
 <body>
-$END$
+
+<h1>闪现</h1>
+{% for msg in get_flashed_message() %}
+    <p>{{ msg }}</p>
+{% endfor %}
+<hr/>
+{% macro input() %}
+<input type="text" name="username" value="" size="30"/>
+{% endmacro %}
+
+<h1> input 1</h1>
+{{ input() }}
+
+<h1> input 2</h1>
+{{ input() }}
+
+<hr/>
+<!--导入模板宏-->
+{% import 'macro_input.html' as m_input %}
+{{ m_input.input4() }}
+
+
 </body>
 </html>
