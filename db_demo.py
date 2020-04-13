@@ -34,6 +34,10 @@ class User(db.Model):
     password = db.Column(db.String(128))
     role_id = db.Column(db.Integer, db.ForeignKey("tbl_roles.id"))
 
+    def __repr__(self):
+        """定义之后，可以让显示对象更加直观"""
+        return "User Object : name %s" % self.name
+
 
 class Role(db.Model):
     """ 用户角色/身份表"""
@@ -41,6 +45,10 @@ class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), unique=True)
     users = db.relationship("User", backref="role")
+
+    def __repr__(self):
+        """定义之后，可以让显示对象更加直观"""
+        return "Role Object : name %s" % self.name
 
 
 if __name__ == '__main__':
@@ -67,5 +75,5 @@ if __name__ == '__main__':
     us4 = User(name='Zang', email='Zang@qq.com', password='12345', role_id=role1.id)
 
     # all_all 一次性添加
-    db.session.add_all([us1,us2,us3,us4])
+    db.session.add_all([us1, us2, us3, us4])
     db.session.commit()

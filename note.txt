@@ -1,0 +1,40 @@
+In [1]: from db_demo import *
+
+In [2]: Role.query.all()
+Out[2]: [<Role 1>, <Role 2>]
+
+In [3]: li = Role.query.all()
+
+In [4]: r = li[0]
+
+In [5]: type(r)
+Out[5]: db_demo.Role
+
+In [6]: r.name
+Out[6]: 'admin'
+
+---------显示对应信息-------
+In [1]: from db_demo import *
+
+In [2]: User.query.get(1)
+Out[2]: User Object : name Wang
+
+---------修改-------------
+In [1]: from db_demo import *
+
+In [2]: User.query.get(1)
+Out[2]: User Object : name Wang
+
+In [3]: user = User.query.get(1)
+
+In [4]: user.name
+Out[4]: 'Wang'
+
+In [5]: user.name = "Python"
+
+In [6]: db.session.add(user)
+
+In [7]: db.session.commit()
+
+In [8]: user.name
+Out[8]: 'Python'
