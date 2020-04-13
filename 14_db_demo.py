@@ -35,7 +35,7 @@ class User(db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey("tbl_roles.id"))
 
 
-class Role:
+class Role(db.Model):
     """ 用户角色/身份表"""
     __tablename__ = "tbl_roles"
     id = db.Column(db.Integer, primary_key=True)
@@ -49,3 +49,23 @@ if __name__ == '__main__':
 
     # 创建所有的表
     db.create_all()
+
+    # 创建对象
+    role1 = Role(name="admin")
+    # 用session记录对象任务
+    db.session.add(role1)
+    # 提交任务到数据库
+    db.session.commit()
+
+    role2 = Role(name="stuff")
+    db.session.add(role2)
+    db.session.commit()
+
+    us1 = User(name='Wang', email='wang@qq.com', password='123456', role_id=role1.id)
+    us2 = User(name='Dang', email='Dang@qq.com', password='123', role_id=role2.id)
+    us3 = User(name='Kang', email='Kang@qq.com', password='1234', role_id=role2.id)
+    us4 = User(name='Zang', email='Zang@qq.com', password='12345', role_id=role1.id)
+
+    # all_all 一次性添加
+    db.session.add_all([us1,us2,us3,us4])
+    db.session.commit()
