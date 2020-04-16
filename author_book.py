@@ -6,7 +6,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from flask_script import Manager
-from flask_migrate import Migrate,MigrateCommand
+from flask_migrate import Migrate, MigrateCommand
 
 app = Flask(__name__)
 
@@ -28,10 +28,11 @@ db = SQLAlchemy(app)
 manager = Manager(app)
 
 # 2.创建数据库迁移工具对象
-Migrate(app,db)
+Migrate(app, db)
 
 # 3.向manager对象中添加数据库的操作命令
-manager.add_command("db",MigrateCommand)
+manager.add_command("db", MigrateCommand)
+
 
 # 定义数据库的模型
 class Author(db.Model):
@@ -42,6 +43,7 @@ class Author(db.Model):
     books = db.relationship("Book", backref="author")
     email = db.Column(db.String(64))
     mobile = db.Column(db.String(64))
+
 
 class Book(db.Model):
     """书籍"""
